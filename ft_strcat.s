@@ -1,4 +1,4 @@
-section .test
+section .text
     global ft_strcat
 
 ft_strcat: ;set values for write syscall

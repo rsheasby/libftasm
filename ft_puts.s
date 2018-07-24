@@ -1,4 +1,4 @@
-section .test
+section .text
     global ft_puts
 
 ft_puts: ;set values for write syscall
