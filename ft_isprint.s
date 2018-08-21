@@ -2,7 +2,7 @@ section .text
     global ft_isprint
 
 ft_isprint:
-    cmp rdi, 32 ;Check if between 32 and 126. If not, result is false.
+    cmp rdi, 32 ; check if between 32 and 126. If not, result is false.
     jl false
     cmp rdi, 126
     jg false
