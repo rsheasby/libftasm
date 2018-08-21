@@ -6,9 +6,11 @@ ft_isprint:
     jl false
     cmp rdi, 126
     jg false
+
 true:
     mov rax, 1
     ret
+
 false:
     mov rax, 0
     ret
