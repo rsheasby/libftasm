@@ -12,5 +12,6 @@ ft_bzero:
     mov rax, rdi ; array pointer
     mov rcx, rsi ; array length
     mov al, 0    ; byte to store
+    rep stosb
 end:
     ret
