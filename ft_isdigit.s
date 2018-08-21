@@ -6,9 +6,11 @@ ft_isdigit:
     jl false
     cmp rdi,'9'
     jg false
+
 true:
     mov rax, 1
     ret
+
 false:
     mov rax, 0
     ret
