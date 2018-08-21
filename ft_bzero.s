@@ -8,9 +8,8 @@ ft_bzero:
     je end
     mov rax, rdi ; array pointer
     mov rcx, rsi ; array length
+    mov al, 0    ; byte to store
 l1:
-    mov byte[rax], 0 ; zero out byte
-    inc rax
-    loop l1 ;loop while length is greater than 0
+    rep stosb
 end:
     ret
