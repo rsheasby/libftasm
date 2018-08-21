@@ -13,9 +13,11 @@ ft_isalpha:
     jge true
 
     jmp false
+
 true:
     mov rax, 1
     ret
+
 false:
     mov rax, 0
     ret
