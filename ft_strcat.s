@@ -1,16 +1,35 @@
 section .text
     global ft_strcat
 
-ft_strcat: ;set values for write syscall
-    mov rsi, rdi ;buffer pointer
-    mov rdx, 0 ;string length
-    mov rdi, 1 ;file descriptor
-    mov rax, 1 ;use sys_write
-strlen: ;count length of string.
-    cmp byte [rsi + rdx], 0 ;check if byte null
-    je strlen_end ;if it is, end
-    inc rdx ;otherwise, increment counter
-    jmp strlen ;and loop
-strlen_end:
-    syscall ;ask kernel to write out string
-    ret ;end
+ft_strcat:
+; Validate input
+    cmp rdi, 0 ; ensure dest is not null
+    je end
+    cmp rsi, 0 ; ensure src is not null
+    je end
+
+; Move dest pointer to end of dest
+    push rdi   ; preserve dest pointer
+    push rsi   ; preserve src pointer
+    cld
+    mov rcx, 0 ; set rcx to max value
+    not rcx
+    mov al, 0  ; byte to search for
+    repne scasb
+    dec rdi    ; move dest pointer to point to null byte
+
+; Get length of src
+    xchg rdi, rsi ; swap src and dest pointers
+    mov rcx, 0    ; set rcx to max value
+    not rcx
+    repne scasb
+    not rcx       ; length of src including null byte
+
+; Copy src to end of dest
+    mov rdi, rsi  ; restore currect dest pointer
+    pop rsi       ; restore original src pointer
+    rep movsb     ; copy data
+    pop rax       ; return initial dest pointer
+
+end:
+    ret
