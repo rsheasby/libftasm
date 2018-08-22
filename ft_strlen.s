@@ -3,7 +3,8 @@ section .text
 
 ft_strlen:
 ; Validate input
-    cmp rdi, 0 ; ensure string pointer isn't null
+    mov rax, -1 ; return -1 if string is invalid.
+    cmp rdi, 0  ; ensure string pointer isn't null
     je end
 
 ; Get length of string
