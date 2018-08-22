@@ -4,16 +4,16 @@ section .text
 ft_strcat:
 ; Validate input
     cmp rdi, 0 ; ensure dest is not null
-    je end
+    je end     ;
     cmp rsi, 0 ; ensure src is not null
-    je end
+    je end     ;
 
 ; Move dest pointer to end of dest
     push rdi    ; preserve dest pointer
     push rsi    ; preserve src pointer
     cld         ; move from left to right
     mov rcx, 0  ; set rcx to max value
-    not rcx
+    not rcx     ;
     mov al, 0   ; byte to search for
     repne scasb ; scan for end
     dec rdi     ; move dest pointer to point to null byte
@@ -21,7 +21,7 @@ ft_strcat:
 ; Get length of src
     xchg rdi, rsi ; swap src and dest pointers
     mov rcx, 0    ; set rcx to max value
-    not rcx
+    not rcx       ;
     repne scasb   ; scan for end
     not rcx       ; length of src including null byte
 
@@ -32,4 +32,4 @@ ft_strcat:
     pop rax       ; return initial dest pointer
 
 end:
-    ret
+    ret ; end
