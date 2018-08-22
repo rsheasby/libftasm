@@ -2,12 +2,19 @@ section .text
     global ft_strlen
 
 ft_strlen:
-    mov al, 0
-    mov rcx, 0
+; Validate input
+    cmp rdi, 0 ; ensure string pointer isn't null
+    je end
+
+; Get length of string
+    mov al, 0    ; byte to search for
+    mov rcx, 0   ; set rcx to max value
     not rcx
-    cld
-    repne scasb
+    cld          ; move from left to right
+    repne scasb  ; scan for end
     not rcx
-    dec rcx
-    mov rax, rcx
+    dec rcx      ; length of string excluding null byte
+    mov rax, rcx ; move length into return value
+
+end:
     ret
