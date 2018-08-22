@@ -9,10 +9,11 @@ ft_bzero:
     je end
 
 ; Zero the array
+    cld          ; go from left to right
     mov rax, rdi ; array pointer
     mov rcx, rsi ; array length
     mov al, 0    ; byte to store
-    rep stosb
+    rep stosb    ; zero the array
 
 end:
     ret
