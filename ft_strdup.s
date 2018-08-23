@@ -4,20 +4,29 @@ section .text
 extern malloc
 
 ft_strdup:
-    push rdi
-    mov al, 0
-    mov rcx, 0
-    not rcx
-    cld
-    repne scasb
-    not rcx
+; Validate input
+    cmp rdi, 0 ; ensure string pointer isn't null
+    je end     ;
 
-    mov rdi, rcx
-    push rcx
-    call malloc
-    pop rcx
-    pop rsi
-    mov rdi, rax
-    rep movsb
-    ret
-    
+; Get length of string
+    push rdi    ; preserve original string pointer
+    cld         ; move from left to right
+    mov rcx, 0  ; set rcx to max value
+    not rcx     ;
+    mov al, 0   ; byte to search for
+    repne scasb ; scan for end
+    not rcx     ; length of string including null byte
+
+; Allocate new memory
+    mov rdi, rcx ; how many bytes to allocate
+    push rcx     ; preserve string length
+    call malloc  ; allocate memory
+
+; Copy string
+    pop rcx      ; restore string length
+    pop rsi      ; restore original string pointer
+    mov rdi, rax ; dest string pointer
+    rep movsb    ; copy string
+
+end:
+    ret ; end
