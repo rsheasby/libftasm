@@ -3,8 +3,8 @@ section .text
 
 ft_bzero:
 ; Validate input
-    cmp rsi, 0 ; ensure length is greater than 0
-    jle end    ;
+    cmp rsi, 0 ; ensure length is not 0
+    je end     ;
     cmp rdi, 0 ; ensure pointer is not null
     je end     ;
 
