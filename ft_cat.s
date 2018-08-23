@@ -40,8 +40,8 @@ l1:
 ; Cleanup
     mov rdi, r12 ; get buffer pointer
     call free    ; free buffer
-    pop r13 ; restore callee-saved registers
-    pop r12 ;
+    pop r13      ; restore callee-saved registers
+    pop r12      ;
 
 end:
     ret ;end
