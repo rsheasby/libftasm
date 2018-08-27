@@ -10,7 +10,6 @@ ft_bzero:
 
 ; Zero the array
     cld          ; go from left to right
-    mov rax, rdi ; array pointer
     mov rcx, rsi ; array length
     mov al, 0    ; byte to store
     rep stosb    ; zero the array
