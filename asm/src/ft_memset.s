@@ -1,7 +1,7 @@
 section .text
-    global ft_memset
+    global _ft_memset
 
-ft_memset:
+_ft_memset:
 ; Validate input
     push rdi   ; preserve original memory pointer
     cmp rdi, 0 ; ensure string pointer isn't null

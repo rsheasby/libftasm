@@ -1,7 +1,7 @@
 section .text
-    global ft_isalpha
+    global _ft_isalpha
 
-ft_isalpha:
+_ft_isalpha:
     cmp rdi, 'A' ; check if between 'A' and 'z'. If not, result is false.
     jl false     ;
     cmp rdi, 'z' ;

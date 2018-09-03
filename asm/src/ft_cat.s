@@ -1,10 +1,10 @@
 section .text
-    global ft_cat
+    global _ft_cat
 
 extern malloc
 extern free
 
-ft_cat:
+_ft_cat:
 ; Validate input
     cmp rdi, -1 ; ensure fd is not -1
     je end      ;

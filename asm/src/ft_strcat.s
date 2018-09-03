@@ -1,7 +1,7 @@
 section .text
-    global ft_strcat
+    global _ft_strcat
 
-ft_strcat:
+_ft_strcat:
 ; Validate input
     cmp rdi, 0 ; ensure dest is not null
     je end     ;

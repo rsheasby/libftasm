@@ -1,9 +1,9 @@
 section .text
-    global ft_strdup
+    global _ft_strdup
 
 extern malloc
 
-ft_strdup:
+_ft_strdup:
 ; Validate input
     cmp rdi, 0 ; ensure string pointer isn't null
     je end     ;

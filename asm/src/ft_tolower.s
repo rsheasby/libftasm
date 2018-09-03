@@ -1,7 +1,7 @@
 section .text
-    global ft_tolower
+    global _ft_tolower
 
-ft_tolower:
+_ft_tolower:
     cmp rdi, 'A' ; check if between 'A' and 'Z'. If not, return original value.
     jl end       ;
     cmp rdi, 'Z' ;

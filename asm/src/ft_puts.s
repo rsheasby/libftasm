@@ -1,7 +1,7 @@
 section .text
-    global ft_puts
+    global _ft_puts
 
-ft_puts:
+_ft_puts:
 ; Validate input
     mov rax, -1 ; if validation fails, return -1 (EOF)
     cmp rdi, 0  ; ensure string pointer isn't null

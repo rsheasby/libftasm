@@ -1,7 +1,7 @@
 section .text
-    global ft_isascii
+    global _ft_isascii
 
-ft_isascii:
+_ft_isascii:
     cmp rdi, 0   ; check if between 0 and 127. If not, result is false.
     jl false     ;
     cmp rdi, 127 ;

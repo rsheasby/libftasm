@@ -1,7 +1,7 @@
 NAME = libfts
 
 AS = nasm
-ASFLAGS = -f elf64
+ASFLAGS = -f macho64
 ASDIR = asm
 ASSRCDIR = $(ASDIR)/src
 ASOBJDIR = $(ASDIR)/obj
@@ -44,7 +44,7 @@ $(TESTOBJDIR)/%.test.o : $(TESTSRCDIR)/%.test.c
 $(TESTDIR)/%.test : $(TESTOBJDIR)/%.test.o $(ASOBJDIR)/%.o
 	$(CC) -o $@ $^
 
-$(NAME): $(ASOBJFILES)
+$(NAME): FORCE $(ASOBJFILES)
 	ar rcs $(NAME) $(ASOBJFILES)
 
 all: $(NAME)
@@ -61,7 +61,7 @@ fclean: clean
 
 re: fclean all
 
-tests: $(TESTEXECFILES)
+tests: FORCE $(TESTEXECFILES)
 
 runtests: tests
 	$(TESTEXECFILES)
@@ -73,3 +73,6 @@ testfclean: testclean
 	rm -f $(TESTEXECFILES)
 
 bleach: fclean testfclean
+
+FORCE:
+	mkdir -p $(ASSRCDIR) $(ASOBJDIR) $(TESTSRCDIR) $(TESTOBJDIR)

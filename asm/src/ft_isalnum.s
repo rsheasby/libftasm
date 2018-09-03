@@ -1,15 +1,15 @@
 section .text
-    global ft_isalnum
+    global _ft_isalnum
 
-ft_isalnum:
+_ft_isalnum:
     cmp rdi, '0'  ; check if between '0' and '9'. If not, check for alpha.
     jl false      ;
     cmp rdi, '9'  ;
-    jg ft_isalpha ;
+    jg _ft_isalpha ;
 
     jmp true ;
 
-ft_isalpha:
+_ft_isalpha:
     cmp rdi, 'A' ; check if between 'A' and 'z'. If not, result is false.
     jl false     ;
     cmp rdi, 'z' ;

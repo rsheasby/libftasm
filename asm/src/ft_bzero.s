@@ -1,7 +1,7 @@
 section .text
-    global ft_bzero 
+    global _ft_bzero 
 
-ft_bzero:
+_ft_bzero:
 ; Validate input
     cmp rsi, 0 ; ensure length is not 0
     je end     ;

@@ -1,7 +1,7 @@
 section .text
-    global ft_strlen
+    global _ft_strlen
 
-ft_strlen:
+_ft_strlen:
 ; Validate input
     mov rax, -1 ; return -1 if string is invalid.
     cmp rdi, 0  ; ensure string pointer isn't null

@@ -1,7 +1,7 @@
 section .text
-    global ft_memcpy
+    global _ft_memcpy
 
-ft_memcpy:
+_ft_memcpy:
 ; Validate input
     cmp rdi, 0 ; ensure dest is not null
     je end     ;
