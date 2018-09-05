@@ -3,9 +3,9 @@ section .text
 
 _ft_strlen:
 ; Validate input
-    mov rax, -1 ; return -1 if string is invalid.
-    cmp rdi, 0  ; ensure string pointer isn't null
-    je end      ;
+    mov rax, 0 ; return 0 if string is invalid.
+    cmp rdi, 0 ; ensure string pointer isn't null
+    je end     ;
 
 ; Get length of string
     mov al, 0    ; byte to search for
