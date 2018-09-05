@@ -1,7 +1,7 @@
 section .text
     global _ft_strdup
 
-extern malloc
+extern _malloc
 
 _ft_strdup:
 ; Validate input
@@ -20,7 +20,7 @@ _ft_strdup:
 ; Allocate new memory
     mov rdi, rcx ; how many bytes to allocate
     push rcx     ; preserve string length
-    call malloc  ; allocate memory
+    call _malloc  ; allocate memory
 
 ; Copy string
     pop rcx      ; restore string length
