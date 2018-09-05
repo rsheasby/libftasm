@@ -2,6 +2,8 @@ section .text
     global _ft_memcpy
 
 _ft_memcpy:
+    push rdi ; preserve original dst pointer
+
 ; Validate input
     cmp rdi, 0 ; ensure dest is not null
     je end     ;
@@ -16,4 +18,5 @@ _ft_memcpy:
     rep movsb    ; copy bytes
 
 end:
-    ret ; end
+    pop rax ; return dst pointer
+    ret     ; end
