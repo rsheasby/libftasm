@@ -6,7 +6,7 @@ extern _malloc
 _ft_strdup:
 ; Validate input
     cmp rdi, 0 ; ensure string pointer isn't null
-    je end     ;
+    je fail    ;
 
 ; Get length of string
     push rdi    ; preserve original string pointer
@@ -20,13 +20,23 @@ _ft_strdup:
 ; Allocate new memory
     mov rdi, rcx ; how many bytes to allocate
     push rcx     ; preserve string length
-    call _malloc  ; allocate memory
+    sub rsp, 8   ; pad stack to 16 bytes
+    call _malloc ; allocate memory
+    add rsp, 8   ; remove stack padding
+    cmp rax, 0   ; ensure malloc didn't fail
+    je fail      ;
 
 ; Copy string
     pop rcx      ; restore string length
     pop rsi      ; restore original string pointer
     mov rdi, rax ; dest string pointer
+    push rdi     ; preserve dest string pointer
     rep movsb    ; copy string
 
 end:
-    ret ; end
+    pop rax ; return dest string
+    ret     ; end
+
+fail:
+    mov rax, 0 ; return NULL
+    ret        ; end
