@@ -3,9 +3,8 @@ section .text
 
 _ft_puts:
 ; Validate input
-    mov rax, -1 ; if validation fails, return -1 (EOF)
     cmp rdi, 0  ; ensure string pointer isn't null
-    je end      ;
+    je fail     ;
 
 ; Get length of string
     push rdi    ; preserve original pointer
@@ -18,20 +17,34 @@ _ft_puts:
     dec rcx     ; length of string excluding null byte
 
 ; Print out string
-    mov rax, 1   ; use "write" syscall
-    mov rdi, 1   ; write to stdout
-    pop rsi      ; restore original string pointer
-    mov rdx, rcx ; length of string
-    syscall      ; print out string
+    mov rax, 0x2000004 ; use "write" syscall with unix offset
+    mov rdi, 1         ; write to stdout
+    pop rsi            ; restore original string pointer
+    mov rdx, rcx       ; length of string
+    push rdx
+    syscall            ; print out string
+    pop rdx
+    cmp rax, rdx       ; ensure the entire string printed correctly
+    jne fail           ;
 
 ; Print newline
-    mov rax, 1    ; use "write" syscall
-    mov rsi, `\n` ; push newline to stack
-    push rsi      ;
-    mov rdx, 1    ; write 1 byte
-    mov rsi, rsp  ; pointer to byte on stack
-    syscall       ; write out char
-    add rsp, 8    ; move stack pointer back
+    mov rax, 0x2000004 ; use "write" syscall with unix offset
+    mov rsi, `\n`      ; push newline to stack
+    push rsi           ;
+    mov rdx, 1         ; write 1 byte
+    mov rsi, rsp       ; pointer to byte on stack
+    mov rdi, 1         ; write to stdout
+    push rdx
+    syscall            ; write out char
+    add rsp, 8         ; move stack pointer back
+    pop rdx
+    cmp rax, rdx       ; ensure the entire string printed correctly
+    jne fail           ;
 
 end:
-    ret ; end
+    mov rax, 1 ; return 1 on success
+    ret        ; end
+
+fail:
+    mov rax, -1 ; return -1 on error
+    ret         ; end
