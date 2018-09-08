@@ -40,7 +40,7 @@ l1:
 
 ; Cleanup
     mov rdi, r12 ; get buffer pointer
-    call _free    ; free buffer
+    call _free   ; free buffer
 
     add rsp, 8   ; remove padding from stack
     pop r13      ; restore callee-saved registers

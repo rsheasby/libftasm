@@ -21,9 +21,9 @@ _ft_puts:
     mov rdi, 1         ; write to stdout
     pop rsi            ; restore original string pointer
     mov rdx, rcx       ; length of string
-    push rdx
+    push rdx           ;
     syscall            ; print out string
-    pop rdx
+    pop rdx            ;
     cmp rax, rdx       ; ensure the entire string printed correctly
     jne fail           ;
 
@@ -34,10 +34,10 @@ _ft_puts:
     mov rdx, 1         ; write 1 byte
     mov rsi, rsp       ; pointer to byte on stack
     mov rdi, 1         ; write to stdout
-    push rdx
+    push rdx           ;
     syscall            ; write out char
     add rsp, 8         ; move stack pointer back
-    pop rdx
+    pop rdx            ;
     cmp rax, rdx       ; ensure the entire string printed correctly
     jne fail           ;
 
