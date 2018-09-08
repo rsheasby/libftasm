@@ -64,7 +64,7 @@ re: fclean all
 tests: FORCE $(TESTEXECFILES)
 
 runtests: tests
-	$(TESTEXECFILES)
+	@$(addsuffix ;, $(TESTEXECFILES))
 
 testclean:
 	rm -f $(TESTOBJFILES)
