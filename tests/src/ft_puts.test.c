@@ -18,7 +18,7 @@ static void test1() {
 
 int main() {
     test1();
-    printf("If you didn't see a message, then ft_puts failed.");
+    printf("If you didn't see a message, then ft_puts failed.\n");
 
     return 0;
 }
