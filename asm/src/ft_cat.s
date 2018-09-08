@@ -6,7 +6,7 @@ extern _free
 
 _ft_cat:
 ; Validate input
-    cmp rdi, -1 ; ensure fd is not -1
+    cmp edi, -1 ; ensure fd is not -1
     je end      ;
 
 ; Allocate memory
@@ -37,6 +37,14 @@ l1:
 ; Loop
     cmp rax, 256 ; check if 256 bytes written
     je l1        ; if so, jump back
+
+; Write newline
+    mov byte [r12], `\n` ; put newline in buffer
+    mov rdi, 1           ; write to stdout
+    mov rsi, r12         ; get buffer
+    mov rdx, 1           ; write one char
+    mov rax, 0x2000004   ; use "write" syscall
+    syscall              ; write string
 
 ; Cleanup
     mov rdi, r12 ; get buffer pointer
