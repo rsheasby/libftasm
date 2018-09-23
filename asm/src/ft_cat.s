@@ -35,8 +35,8 @@ l1:
     syscall            ; write string
 
 ; Loop
-    cmp rax, 256 ; check if 256 bytes written
-    je l1        ; if so, jump back
+    cmp rax, 0 ; check file is still open
+    jne l1     ; if so, jump back
 
 ; Write newline
     mov byte [r12], `\n` ; put newline in buffer
