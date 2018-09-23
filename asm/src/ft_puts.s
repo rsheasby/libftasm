@@ -1,10 +1,11 @@
 section .text
     global _ft_puts
+    default rel
 
 _ft_puts:
 ; Validate input
     cmp rdi, 0  ; ensure string pointer isn't null
-    je fail     ;
+    je null     ;
 
 ; Get length of string
     push rdi    ; preserve original pointer
@@ -48,3 +49,15 @@ end:
 fail:
     mov rax, -1 ; return -1 on error
     ret         ; end
+
+null:
+    mov rax, 0x2000004  ; use "write" syscall with unix offset
+    mov rdi, 1          ; write to stdout
+    lea rsi, [null_str] ; pointer to string message
+    mov rdx, 7          ; length of string
+    syscall             ; print out string
+    jmp fail            ; return -1
+
+section .data
+
+null_str: db '(null)', 0xA ; string to write on receiving a null pointer
