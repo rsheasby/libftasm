@@ -9,7 +9,7 @@ ASSRCFILES = $(addprefix $(ASSRCFILES)/, $(addsuffix .s, $(FUNNAMES)))
 ASOBJFILES = $(addprefix $(ASOBJDIR)/, $(addsuffix .o, $(FUNNAMES)))
 
 CC = clang
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -arch x86_64
 TESTDIR = tests
 TESTSRCDIR = $(TESTDIR)/src
 TESTOBJDIR = $(TESTDIR)/obj
