@@ -1,4 +1,4 @@
-NAME = libfts
+NAME = libfts.a
 
 AS = nasm
 ASFLAGS = -f macho64
